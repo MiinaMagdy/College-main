@@ -18,7 +18,8 @@ def update_Teacher(_id = '-1'):
             fields = record.split('\t')
             fields.pop()
             if _id == fields[0]:
-                flag = True    
+                flag = True 
+                PutSp(20 , ' ')   
                 fields[4] = getpass("Enter the new password for " + fields[1] + ": ")
                 record = ""
                 for i in range(len(fields)):
@@ -27,9 +28,15 @@ def update_Teacher(_id = '-1'):
                 ThisTec = record.split('\t')
             temp_file.write(record)
         if not flag:
+            SetCo('red')
+            PutSp(50 , ' ')
             print('Teacher not found')
+            sound("Teacher not found")
         else:
+            SetCo('green')
+            PutSp(40 , ' ')
             print('Teacher updated successfully')
+            sound("Teacher updated successfully")
     os.remove('Teachers.txt')
     os.rename('Temp.txt', 'Teachers.txt')
     return ThisTec
@@ -39,11 +46,14 @@ def teacher():
     choice = '1'
     while choice != '0':
         #Menu:
-        print('Choose: ')
-        print(8 * '-')
-        print("1- Sign in")
-        print("0- Return Back")
-        
+        SetCo('green')
+        table('Choose: ' , 30)
+        table("1- Sign in" ,30)
+        SetCo('red')
+        table("0- Return Back" , 30)
+        table("" , 30)
+        SetCo('gold')
+        PutSp(20 , ' ')
         Reg = input('Choice: ')
         
         if Reg == '0':
@@ -54,14 +64,23 @@ def teacher():
         thisTeacher = []
         if Reg == '1':
             Directing()
-            print("Teacher Sign In Page")
-            print(22 * '-')
+            SetCo('blue')
+            SetCo('green')
+            table("Teacher Sign In Page", 40)
+            table("" , 40)
+            PutSp(20 , ' ')
+            SetCo('gold')
             TecID = input('Enter ID: ')
+            PutSp(20 , ' ')
             TecPass = getpass('Enter Password: ')
+            
             [found, thisTeacher] = SearchTeacher(TecID, TecPass)
         
         if not found:
+            SetCo('red')
+            PutSp(20 , ' ')
             print("The ID or the Password is wrong, Please try Aagin")
+            sound("The ID or the Password is wrong, Please try Aagin")
             press_any()
             Returning()
             return
@@ -69,10 +88,15 @@ def teacher():
         TecCh = '1'
         while TecCh != '0':
             Directing()
-            print('1) Show my Info')
-            print('2) Show my students')
-            print('3) Update password')
-            print('0) Logout')
+            SetCo('green')
+            table('1) Show my Info' , 30)
+            table('2) Show my students' , 30)
+            table('3) Update password' , 30)
+            SetCo('red')
+            table('0) Logout' , 30)
+            table("" , 30)
+            SetCo('gold')
+            PutSp(20 , ' ')
             TecCh = input('Choose: ')
             if TecCh == '0':
                 Returning()
@@ -81,8 +105,12 @@ def teacher():
             Directing()
 
             if TecCh == '1':
-                print('ID\tName\tAge\tCourse\tPassword')
+                PutSp(40 , " ")
+                SetCo('brown')
+                print('ID\tName\tAge\tCourse\t\tPassword')
+                PutSp(40 , " ")
                 print('-' * 50)
+                PutSp(40 , " ")
                 print('\t'.join(map(str, thisTeacher[0: 3])) + '\t  ' + thisTeacher[3] + '\t\t    ' +'\t'.join(map(str, thisTeacher[4: 5])))
                 press_any()
             
@@ -95,6 +123,9 @@ def teacher():
                             flag = 1
                             print(fields[0] + '- ' + fields[1])
                     if not flag:
+                        PutSp(50 , ' ')
+                        SetCo('red')
+                        sound("There is no Students yet")
                         print('There\'s no Students yet.')
                     press_any()
             
