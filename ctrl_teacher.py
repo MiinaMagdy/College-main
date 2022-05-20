@@ -2,81 +2,131 @@ from help import *
 
 
 def ctrl_teacher():
+   
     Directing()
     while True:
-        print('Admin Page (Teacher Control)')
+        SetCo('blue')
+        table('Admin Page (Teacher Control)' , 50 , 30)
+        table('' , 50 , 30)
+        PutSp(50,' ')
+        print()
+        SetCo('green')
+        PutSp(30 , ' ')
         print('Choose : ')
-        print('  1- Show All Teachers ')
-        print('  2- Search Teacher  ')
-        print('  3- Add ')
-        print('  4- Remove ')
-        print('  5- Edit  ')
-        print('  6- Return ')
+        table('  1- Show All Teachers ',25)
+        table('  2- Search Teacher  ',25)
+        table('  3- Add ',25)
+        table('  4- Remove ',25)
+        table('  5- Edit  ',25)
+        SetCo('red')
+        table('  6- Return ',25)
+        table("",25)
+        PutSp(30,' ')
+        SetCo('gold')
         choice = int(input('Enter Your Choice : '))
         if choice == 1:
+            print()
             Show_All_Teachers()
+           
         elif choice == 2:
+            print()
             Search_Teacher()
+           
+
         elif choice == 3:
+            print()
             Add_Teacher()
-        elif choice == 4:
+          
+        elif choice == 4: 
+            print()     
             Remove_Teacher()
+           
         elif choice == 5:
+            print()     
             Edit_Teacher()
+           
         else:
+            print()
             Returning()
             return 
 
 def Show_All_Teachers():
-   # fil =  open('Teachers.txt','r')
-   # if os.path.getsize(file) == 0:
-     #   print('File is empty')
     flag = 1
     with open('Teachers.txt','r') as file:
         for line in file:
             if flag:
+                SetCo('green')
+                PutSp(30,' ')
                 print('ID\tName\tAge\tCouse\tpassword\t')
-                print('---------------------------------------')
+                PutSp(30,' ')
+                print('----\t----\t----\t----\t----\t')
                 flag = 0
             thisTeacher = line.split('\t')
-            print('\t'.join(map(str, thisTeacher[0: 3])) + '\t  ' + thisTeacher[3] + '\t\t    ' +'\t'.join(map(str, thisTeacher[4: 5])))
+            PutSp(30,' ')
+            SetCo('gold')
+            print(thisTeacher[0]+'\t\t'+thisTeacher[1]+'\t'+thisTeacher[2]+'\t'+thisTeacher[3]+'\t'+thisTeacher[4]+'\t')  
         press_any()
         Returning()
 
 def Search_Teacher():
+    PutSp(30,' ')
+    SetCo('gold')
+    sound("please Enter the ID of Teacher To search")
     Id = input('Enter the ID of Teacher To search ')
     with open('Teachers.txt','r') as file:
         flag = False
         for line in file:
             thisTeacher = line.split('\t')
             if thisTeacher[0] == Id:
+                PutSp(30,' ')
+                SetCo('green')
                 print('ID\tName\tAge\tCouse\tpassword\t')
-                print('-------------------------------------')
-                print('\t'.join(map(str, thisTeacher[0: 3])) + '\t  ' + thisTeacher[3] + '\t\t    ' +'\t'.join(map(str, thisTeacher[4: 5])))
+                PutSp(30,' ')
+                print('----\t----\t----\t-----\t------\t')
+                PutSp(30,' ')
+                SetCo('gold')
+                print(thisTeacher[0]+'\t\t'+thisTeacher[1]+'\t'+thisTeacher[2]+'\t'+thisTeacher[3]+'\t'+thisTeacher[4]+'\t')
                 flag = True
                 break
         if not flag:
+            PutSp(50,' ')
+            SetCo('red')
             print('Teacher Not Found')
+            sound("Teacher Not Found")
     press_any()
     Returning()
 
 def Add_Teacher():
+    
     with open('Teachers.txt','a') as file:
+        print()
+        PutSp(30,' ')
         name = input('Enter The Name: ')
+        PutSp(30,' ')
+        
         age = input('Enter The Age: ')
+        PutSp(30,' ')
+        
         course = input('Enter The Course''s Name: ')
+        PutSp(30,' ')
+        
         password = getpass('Enter The Password: ')
+        PutSp(30,' ')
+        print()
         Id = str(teachers_ids.get())
-        print("\nRegistration Completed ... Your ID is: ", Id)
+        PutSp(30,' ')
+        print("Registration Completed ... Your ID is: ", Id)
+        sound("Registration Completed")
+        
         file.write(Id + '\t' + name + '\t' + age + '\t' + course + '\t' + password + '\t\n')
     press_any()
     Returning()
 
-#Remove Teacher:
-# 1) loop for each stu[6 :], write it in a new file
-# 2) if id != id_file -> write in new file
 
 def Remove_Teacher():
+    print()
+    PutSp(30,' ')
+    sound("please Enter The id To delete")
     Id = input('Enter The id To delete: ')
     flag = False
     with open('Teachers.txt', 'r') as TecFile, open('Temp.txt', 'w') as temporary_file:
@@ -91,13 +141,19 @@ def Remove_Teacher():
     os.rename('Temp.txt' , 'Teachers.txt')
 
     if not flag:
+        PutSp(50,' ')
+        SetCo('red')
         print('teacher Not Found')
+        sound("teacher Not Found")
         press_any()
         Returning()
         return
     
     teachers_ids.put(int(Id))
+    PutSp(50,' ')
+    SetCo('green')
     print('deleted successfully')
+    sound("deleted successfully")
     with open('Student.txt', 'r') as student_file, open('Temporary.txt', 'w') as Tempo:
         for record in student_file:
             fields = record.split('\t')
@@ -116,7 +172,10 @@ def Remove_Teacher():
     Returning()
 
 def Edit_Teacher():
-    _id = input('Enter The id To delete: ') 
+    print()
+    PutSp(30,' ')
+    sound("please Enter The id To Edit")
+    _id = input('Enter The id To Edit: ') 
     with open('Teachers.txt', 'r') as TechFile, open('Temp.txt', 'w') as temp_file:
         flag = False
         for record in TechFile:
@@ -124,17 +183,24 @@ def Edit_Teacher():
             fields.pop()
             if _id == fields[0]:
                 flag = True   
-
-                ch = input('Do you wnat to change the Name (Y / N)? ')
+                PutSp(30,' ')  
+                sound("Do you want to change the Name")
+                ch = input('Do you want to change the Name (Y / N)? ')
                 if ch == 'y' or ch == 'Y':
+                    PutSp(30,' ')
                     fields[1] = input('\tEnter the new name: ')
-
-                ch = input('Do you wnat to change the Age (Y / N)? ')
+                PutSp(30,' ')
+                sound("Do you want to change the Age")
+                ch = input('Do you want to change the Age (Y / N)? ')
                 if ch == 'y' or ch == 'Y':
+                    PutSp(30,' ')
                     fields[2] = input('\tEnter the new Age: ')
 
-                ch = input('Do you wnat to change the Course name (Y / N)? ')
+                PutSp(30,' ')
+                sound("Do you want to change the Course name")
+                ch = input('Do you want to change the Course name (Y / N)? ')
                 if ch == 'y' or ch == 'Y':
+                    PutSp(30,' ')
                     fields[3] = input('\tEnter the new course name: ')
                      
                 record = ""
@@ -143,32 +209,15 @@ def Edit_Teacher():
                 record += '\n'
             temp_file.write(record)
         if not flag:
+            PutSp(50,' ')
             print('Teacher not found')
+            sound("Teacher not found")
         else:
+            PutSp(30,' ')
+            SetCo('green')
             print('Teacher updated successfully')
+            sound("Teacher updated successfully")
     os.remove('Teachers.txt')
     os.rename('Temp.txt', 'Teachers.txt')
-    press_any()
+    press_any()    
     Returning()
-# def Edit_Teacher():
-#     id = input('Enter The id To delete: ') 
-#     file = open('Teachers.txt','r')
-#     tempFile = open('Tempteacher.txt','w')
-#     flag = False
-#     for line in file:
-#             field = line.split('\t')
-#             if field[0] == id:
-#                 do = 
-#                 age =  input('Enter the age you want to update ')
-#                 field[3] = age;
-#                 line = field[0] + '\t' + field[1] + '\t' + field[2] +'\t' + field[3] + '\t' + field[4] + '\n'
-#                 flag = True
-#             tempFile.write(line)
-#     file.close()
-#     tempFile.close()
-#     os.remove('Teachers.txt')
-#     os.rename('Tempteacher.txt' , 'Teachers.txt')
-#     if not flag:
-#         print('Teacher Not Found')
-#     else:
-#         print('deleted successfully')
