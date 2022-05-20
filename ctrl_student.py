@@ -2,25 +2,42 @@ from help import *
 from student import *
 
 def searchStudent():
+    PutSp(20 , ' ')
+    SetCo('gold')
+    sound("please Enter the ID of the student to search for")
     stu_id = input('Enter the ID of the student to search for:')
     flag = 0
     with open('Student.txt','r') as file:
         for line in file:
             fields = line.split('\t')
             if stu_id == fields[0]:
-                print('ID\tName\tAge\tDepartment\tLevel\tPassword')
-                print('------------------------------------------')
+                PutSp(20 , ' ')
+                SetCo('green')
+                print('ID\tName\tAge\tDepartment\tLevel\t\tPassword')
+                PutSp(20 , ' ')
+                print('---------------------------------------------------------------------')
+                PutSp(20 , ' ')
+                SetCo('gold')
                 for i in range(6):
-                    print(fields[i] + '\t', end='')
+                    if i < 3:
+                       print(fields[i] + '\t', end='')
+                    else :
+                        print(fields[i] + '\t\t' , end = '')
                 print('\n')
                 flag = 1
         if not flag:
+            SetCo('red')
+            PutSp(50 , ' ')
             print('Not Found')
+            sound("Not Found")
     press_any()
     Returning()
-
-
+    
+    
 def Remove_Teacher():
+    PutSp(30,' ')
+    SetCo('gold')
+    sound("please Enter The id you want to delete")
     Id = input('Enter The id To delete: ')
     flag = False
     with open('Teachers.txt', 'r') as TecFile, open('Temp.txt', 'w') as temporary_file:
@@ -35,12 +52,18 @@ def Remove_Teacher():
     os.rename('Temp.txt' , 'Teachers.txt')
 
     if not flag:
+        PutSp(50,' ')
+        SetCo('red')
         print('teacher Not Found')
+        sound("teacher Not Found")
         press_any()
         Returning()
     
     teachers_ids.put(int(Id))
+    PutSp(50,' ')
+    SetCo('green')
     print('deleted successfully')
+    sound("deleted successfully")
     with open('Student.txt', 'r') as student_file, open('Temporary.txt', 'w') as Tempo:
         for record in student_file:
             fields = record.split('\t')
@@ -59,6 +82,9 @@ def Remove_Teacher():
     Returning()
 
 def delete_student():
+    PutSp(30,' ')
+    SetCo('gold')
+    sound("Enter The id you wante to delete")
     Id = input('Enter The id To delete: ')
     flag = False
     with open('Student.txt', 'r') as student_file, open('Temp.txt', 'w') as temp_file:
@@ -73,13 +99,19 @@ def delete_student():
     os.rename('Temp.txt' , 'Student.txt')
     
     if not flag:
+        PutSp(30,' ')
+        SetCo('red')
         print('Student Not Found')
+        sound("Student Not Found")
         press_any()
         Returning()
         return
 
     students_ids.put(int(Id))
+    PutSp(30,' ')
+    SetCo('green')
     print('deleted successfully')
+    sound("deleted successfully")
     with open('Teachers.txt', 'r') as teacher_file, open('Temporary.txt', 'w') as Tempo:
         for record in teacher_file:
             fields = record.split('\t')
@@ -98,7 +130,10 @@ def delete_student():
     Returning()
 
 def update_student(_id = '-1'):
-    _id = input('Enter The id To delete: ')
+    PutSp(30,' ')
+    SetCo('gold')
+    sound("Enter The id To update")
+    _id = input('Enter The id To update: ')
     with open('Student.txt', 'r') as student_file, open('Temp.txt', 'w') as temp_file:
         flag = False
         for record in student_file:
@@ -107,16 +142,25 @@ def update_student(_id = '-1'):
             if _id == fields[0]:
                 flag = True    
                 
-                ch = input('Do you wnat to change the Name (Y / N)? ')
+                PutSp(30,' ')
+                sound("Do you want to change the Name")
+                ch = input('Do you want to change the Name (Y / N)? ')
                 if ch == 'y' or ch == 'Y':
+                    PutSp(30,' ')
                     fields[1] = input('\tEnter the new name: ')
 
-                ch = input('Do you wnat to change the Age (Y / N)? ')
+                PutSp(30,' ')
+                sound("Do you want to change the Age")
+                ch = input('Do you want to change the Age (Y / N)? ')
                 if ch == 'y' or ch == 'Y':
+                    PutSp(30,' ')
                     fields[2] = input('\tEnter the new Age: ')
 
-                ch = input('Do you wnat to change the Department (Y / N)? ')
+                PutSp(30,' ')
+                sound("Do you want to change the Department")
+                ch = input('Do you want to change the Department (Y / N)? ')
                 if ch == 'y' or ch == 'Y':
+                    PutSp(30,' ')
                     fields[3] = input('\tEnter the new Department: ')
                      
                 record = ""
@@ -126,9 +170,15 @@ def update_student(_id = '-1'):
             temp_file.write(record)
 
         if not flag:
+            PutSp(50,' ')
+            SetCo('red')
             print('Student not found')
+            sound("Student not found")
         else:
+            PutSp(50,' ')
+            SetCo('green')
             print('Student updated successfully')
+            sound("Student updated successfully")
 
     os.remove('Student.txt')
     os.rename('Temp.txt', 'Student.txt')
@@ -137,35 +187,50 @@ def update_student(_id = '-1'):
 
 def ctrl_student():
     while 1:
-        print('Admin Page (Control Student)')
+        SetCo('blue')
+        table('Admin Page (Control Student)' , 50)
+        table("" ,50)
+        print()
+        PutSp(30,' ')
+        SetCo('green')
         print('choose: ')
-        print('1- Show All Student ')
-        print('2- Search Student ')
-        print('3- Add ')
-        print('4- Remove ')
-        print('5- Edit ')
-        print('6- Return ')
-        Ad_Stud_choice = input('Choise: ')
+        table('1- Show All Student ',25)
+        table('2- Search Student ',25)
+        table('3- Add ',25)
+        table('4- Remove ',25)
+        table('5- Edit ',25)
+        SetCo('red')
+        table('6- Return ',25)
+        table("",25)
+        PutSp(30,' ')
+        SetCo('gold')
+        Ad_Stud_choice = input('Choice: ')
         if Ad_Stud_choice == '1':
             #show all student
             Directing()
+            print()
             read_student()
         elif Ad_Stud_choice == '2':
             #search student
             Directing()
+            print()
             searchStudent()
         elif Ad_Stud_choice == '3':
-            #Add
             Directing()
+            print()
             write_student()
         elif Ad_Stud_choice == '4':
             #remove
             Directing()
+            print()
             delete_student()
+        
         elif Ad_Stud_choice == '5':
             #Edit
             Directing()
+            print()
             update_student()
+        
         elif Ad_Stud_choice == '6':
             #return
             Returning()
