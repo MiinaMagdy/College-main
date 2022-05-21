@@ -8,6 +8,7 @@ from help import *
 #SetCo('color')
 
 def main():
+    os.system('cls')
     init_student_ids()
     init_teacher_ids()
     choice = 1
@@ -42,8 +43,8 @@ def main():
     Returning()
     SetCo("gold")
     PutSp(30,' ')
-    print("created by peter turkey,mina magdy ,mohamed ashraf,eman mohamed and eman el-saied")
-    sound("created by peter turkey,mina magdy ,mohamed ashraf,eman mohamed and eman el-saied")
+    print("created by Peter Torki, Mina Magdy, Mohamed Ashraf, Eman Mohamed and Eman El-saied")
+    sound("created by Peter Torki, Mina Magdy, Mohamed Ashraf, Eman Mohamed and Eman El-saied")
     SetCo("blue")
     
     PutSp(50,' ')
