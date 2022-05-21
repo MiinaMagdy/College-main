@@ -200,7 +200,7 @@ def ctrl_student():
         table('4- Remove ',25)
         table('5- Edit ',25)
         SetCo('red')
-        table('6- Return ',25)
+        table('0- Return ',25)
         table("",25)
         PutSp(30,' ')
         SetCo('gold')
@@ -231,7 +231,7 @@ def ctrl_student():
             print()
             update_student()
         
-        elif Ad_Stud_choice == '6':
+        elif Ad_Stud_choice == '0':
             #return
             Returning()
             return
