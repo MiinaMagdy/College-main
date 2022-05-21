@@ -2,9 +2,9 @@ from help import *
 
 
 def ctrl_teacher():
-   
     Directing()
-    while True:
+    choice = '1'
+    while choice != '0':
         SetCo('blue')
         table('Admin Page (Teacher Control)' , 50 , 30)
         table('' , 50 , 30)
@@ -19,36 +19,42 @@ def ctrl_teacher():
         table('  4- Remove ',25)
         table('  5- Edit  ',25)
         SetCo('red')
-        table('  6- Return ',25)
+        table('  0- Return ',25)
         table("",25)
         PutSp(30,' ')
         SetCo('gold')
-        choice = int(input('Enter Your Choice : '))
-        if choice == 1:
+        choice = input('Enter Your Choice : ')
+        if choice == '1':
             print()
             Show_All_Teachers()
            
-        elif choice == 2:
+        elif choice == '2':
             print()
             Search_Teacher()
            
 
-        elif choice == 3:
+        elif choice == '3':
             print()
             Add_Teacher()
           
-        elif choice == 4: 
+        elif choice == '4': 
             print()     
             Remove_Teacher()
            
-        elif choice == 5:
+        elif choice == '5':
             print()     
             Edit_Teacher()
            
-        else:
-            print()
-            Returning()
-            return 
+        elif choice != '0':
+            PutSp(30, ' ')
+            SetCo('red')
+            print('Choose a number between 0 and 5')
+            sound("Choose a number between 0 and 5")
+            press_any()
+            Directing()
+
+    print()
+    Returning()
 
 def Show_All_Teachers():
     flag = 1
@@ -116,7 +122,7 @@ def Add_Teacher():
         Id = str(teachers_ids.get())
         PutSp(30,' ')
         print("Registration Completed ... Your ID is: ", Id)
-        sound("Registration Completed")
+        sound("Registration Completed ... Your ID is: " + Id)
         
         file.write(Id + '\t' + name + '\t' + age + '\t' + course + '\t' + password + '\t\n')
     press_any()
