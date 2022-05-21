@@ -34,8 +34,7 @@ def admin():
         Id = input('Enter ID: ')
         PutSp(50,' ')
         Password = getpass('Enter Password: ')
-        found = 1
-        # found = (Id == Password and Id == 'Admin')
+        found = (Id == Password and Id == 'Admin')
         if found:
             while 1:
                 Directing()
@@ -58,11 +57,9 @@ def admin():
                     Returning()
                     return
                 elif Admin_choice == '1':
-                    Directing()
                     ctrl_teacher()
 
                 elif Admin_choice == '2':
-                    Directing()
                     ctrl_student()
                 
                 else:
@@ -72,9 +69,10 @@ def admin():
                     press_any()
    
         else:
-            PutSp(30,' ')
+            print()
+            PutSp(40,' ')
             SetCo('red')
-            print('Id or Password is wrond please try again!!!')
+            print('Id or Password is wrong please try again!!!')
             sound("yooooohhhh Id or Password is wrond please try again")
             press_any()        
             Returning()
