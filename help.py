@@ -62,8 +62,8 @@ def Directing():
     print('Redicrecting', end='', flush = True)
     for i in range(3):
         print('.', end='', flush = True)
-        time.sleep(0.4)
-    time.sleep(0.4)
+        time.sleep(0.3)
+    time.sleep(0.2)
     os.system("cls")
     print()
 
@@ -74,8 +74,8 @@ def Returning():
     print('Returning', end='', flush = True)
     for i in range(3):
         print('.', end='', flush = True)
-        time.sleep(0.4)
-    time.sleep(0.4)
+        time.sleep(0.3)
+    time.sleep(0.2)
     os.system("cls")
     print()
 
