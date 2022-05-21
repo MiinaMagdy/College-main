@@ -20,7 +20,7 @@ def write_student():
         PutSp(40 , ' ')
         SetCo('green')
         print("Registration Completed ... Your ID is: ", Id)
-        sound("Registration Completed Your ID is")
+        sound("Registration Completed Your ID is " + Id)
         press_any()
         this_stu = Id + '\t' + Name + '\t' + Age + '\t' + Department + '\t' + Level + '\t' + Password + '\t\n'
         student_file.write(this_stu)
