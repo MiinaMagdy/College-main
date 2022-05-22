@@ -60,6 +60,7 @@ def admin():
                     ctrl_teacher()
 
                 elif Admin_choice == '2':
+                    Directing()
                     ctrl_student()
                 
                 else:
