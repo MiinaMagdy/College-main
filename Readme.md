@@ -13,7 +13,7 @@
 
 3) TODO: Program must be runned at Windows OS
 
-4) TODO: Run only the Main.cpp file
+4) TODO: Run only the Main.py file
 
 5) TODO: From the Main screen -> choose Admin choice(3) -> (id = Admin, pass = Admin).
 
